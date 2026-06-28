@@ -1,0 +1,30 @@
+import { body, validationResult } from "express-validator";
+export const validate = (validations) => {
+    return async (req, res, next) => {
+        for (let validation of validations) {
+            const result = await validation.run(req);
+            if (!result.isEmpty()) {
+                break;
+            }
+        }
+        const errors = validationResult(req);
+        if (errors.isEmpty()) {
+            return next();
+        }
+        return res.status(422).json({ errors: errors.array() });
+    };
+};
+export const loginValidator = [
+    body("email").trim().isEmail().withMessage("Email is Required"),
+    body("password").trim().isLength({ min: 4 }).withMessage("Paswword should be atleast 4 characters")
+];
+//used to validate if signup details are correct or not
+//midleware
+export const signupValidator = [
+    body("name").notEmpty().withMessage("Name is Required"),
+    ...loginValidator,
+];
+export const chatCompletionValidator = [
+    body("message").notEmpty().withMessage("Name is Required"),
+];
+//# sourceMappingURL=validators.js.map
