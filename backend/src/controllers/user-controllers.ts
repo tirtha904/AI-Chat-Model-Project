@@ -151,7 +151,7 @@ export const userLogout = async (
 
     res.clearCookie(COOKIE_NAME, {
       httpOnly: true,
-      // domain: "localhost",
+      domain: "localhost",
       signed: true,
       path: "/",
     });
