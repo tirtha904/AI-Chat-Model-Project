@@ -7,7 +7,7 @@ export default defineConfig({
   server:{
     proxy:{
       '/api':{
-        target:'https://ai-chat-model-project-1.onrender.com/',
+        target:'https://ai-chat-model-project-1.onrender.com/api/v1',
         changeOrigin:true,
         secure:false,
       }
