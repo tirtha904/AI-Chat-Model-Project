@@ -11,7 +11,7 @@ import {Toaster} from 'react-hot-toast'
 
 import axios from "axios";
 // set default base URL for axios
-axios.defaults.baseURL = "https://ai-chat-model-project-1.onrender.com/"; //
+axios.defaults.baseURL = "https://ai-chat-model-project-1.onrender.com//api/v1"; //
 axios.defaults.withCredentials = true; // helps to exchange the cookies
 const theme= createTheme({ //theme for matrial ui
   typography:{
