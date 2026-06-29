@@ -32,8 +32,8 @@ export const userSignup= async (req:Request,res:Response,next:NextFunction)=>{
       // domain:'localhost',
       httpOnly:true, //makes site secure
       signed:true,
-      secure:false,
-      sameSite:'lax'
+      secure:true,
+      sameSite:'none'
     });
 
     const token=createToken(user._id.toString(),user.email,"7d");
@@ -45,8 +45,8 @@ export const userSignup= async (req:Request,res:Response,next:NextFunction)=>{
       expires,
       httpOnly:true,
       signed:true,
-      secure:false,
-      sameSite:'lax'
+      secure:true,
+      sameSite:'none'
     })
     console.log('cookie created')
     console.log(req.headers.cookie)
@@ -80,8 +80,8 @@ export const userLogin= async (req:Request,res:Response,next:NextFunction)=>{
       // domain:'localhost',
       httpOnly:true,
       signed:true,
-       secure:false,
-      sameSite:'lax'
+      secure:true,
+      sameSite:'none'
     });
 
     const token=createToken(user._id.toString(),user.email,"7d");
@@ -93,8 +93,8 @@ export const userLogin= async (req:Request,res:Response,next:NextFunction)=>{
       expires,
       httpOnly:true,
       signed:true,
-       secure:false,
-      sameSite:'lax'
+       secure:true,
+      sameSite:'none'
     })
      console.log('cookie created')
     console.log(req.headers.cookie)
@@ -151,7 +151,7 @@ export const userLogout = async (
 
     res.clearCookie(COOKIE_NAME, {
       httpOnly: true,
-      domain: "localhost",
+      // domain: "localhost",
       signed: true,
       path: "/",
     });
