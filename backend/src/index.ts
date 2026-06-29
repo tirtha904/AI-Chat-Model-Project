@@ -12,7 +12,7 @@ const server =http.createServer(app);
 // Export Socket.IO instance
 export const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://ai-chat-model-frontend.onrender.com",
     credentials: true,
   },
 });
