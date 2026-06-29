@@ -4,7 +4,7 @@ export const api = axios.create({
   withCredentials: true, // helps to exchange the cookies
 });
 export const loginUser = async (email: string, password: string) => {
-  const res = await api.post("/+/user/login", { email, password });
+  const res = await api.post("/user/login", { email, password });
   if (res.status !== 200) {
     throw new Error("Unable to login");
   }
