@@ -1,10 +1,10 @@
 import axios from "axios";
 export const api = axios.create({
-  baseURL: "https://ai-chat-model-project-1.onrender.com/", //
+  baseURL: "https://ai-chat-model-project-1.onrender.com/api/v1", //
   withCredentials: true, // helps to exchange the cookies
 });
 export const loginUser = async (email: string, password: string) => {
-  const res = await api.post("/user/login", { email, password });
+  const res = await api.post("/+/user/login", { email, password });
   if (res.status !== 200) {
     throw new Error("Unable to login");
   }
