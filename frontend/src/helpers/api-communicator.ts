@@ -1,6 +1,6 @@
 import axios from "axios";
 export const api = axios.create({
-  baseURL: "http://localhost:8000/api/v1", //
+  baseURL: "https://ai-chat-model-project-1.onrender.com/", //
   withCredentials: true, // helps to exchange the cookies
 });
 export const loginUser = async (email: string, password: string) => {
