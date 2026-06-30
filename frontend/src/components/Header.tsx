@@ -22,6 +22,8 @@ const Header = () => {
       toast.loading("Deleting Chats", { id: "deletechats" });
 
       await deleteUserChats();
+      window.location.reload();
+
 
       toast.success("Deleted Chats Successfully", {
         id: "deletechats",
