@@ -20,7 +20,7 @@ const Signup = () => {
       toast.success("Signed Up Successfully", { id: "signup" });
     } catch (error) {
       console.log(error);
-      toast.error("Signing Up Failed", { id: "signup" });
+      toast.error((error as Error).message, { id: "signup" });
     }
   };
   //  @ts-ignore
@@ -31,70 +31,76 @@ const Signup = () => {
     }
   }, [auth]);
   return (
-    <Box sx={{ width: "100%", height: "100%", display: "flex", flex: 1 }}>
-      
+    <Box
+      sx={{
+        display: "flex",
+        flex: { xs: 1, md: 0.5 },
+        justifyContent: "center",
+        alignItems: "center",
+        p: 'auto',
+        m: 'auto',
+        minWidth: 0,
+        minHeight: '80vh',
+        width: {
+          xs: '80%',
+          sm: '100%',
+          md: '100%'
+        }
+      }}
+    >
       <Box
-         sx={{
-          display: "flex",
-          flex: { xs: 1, md: 0.5 },
-          justifyContent: "center",
-          alignItems: "center",
-          p: 2,
-          m:'auto',
-          pt:'150px',
-          width:'100%',
-          minWidth:0,
-        }}
-      >
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            margin: "auto",
-            padding: "30px",
-            boxShadow: "10px 10px 20px white",
-            borderRadius: "10px",
-            // border: "none",
+        component='form'
+        onSubmit={(handleSubmit)}
+        sx={{
+          margin: "auto",
+          padding: "30px",
+          boxShadow: "10px 10px 20px white",
+          borderRadius: "10px",
+          width: '100%',
+          maxWidth: "400px",
+
+        }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            maxWidth: '100%',
+            width: '100%',
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
+          <Typography
+            variant="h4"
+            sx={{ p: 2, fontWeight: 600, textAlign: "center" }}
           >
-            <Typography
-              variant="h4"
-               sx={{ p: 2, fontWeight: 600, textAlign:"center" }}
-            >
-              Signup
-            </Typography>
-            <CustomizedInput type="text" name="name" label="Name" />
-            <CustomizedInput type="email" name="email" label="Email" />
-            <CustomizedInput type="password" name="password" label="Password" />
-            <Button
-              type="submit"
-              sx={{
-                px: 2,
-                py: 1,
-                mt: 2,
-                width: "400px",
-                borderRadius: 2,
-                bgcolor: "#00fffc",
-                color: "#08131F",
+            Signup
+          </Typography>
+          <CustomizedInput type="text" name="name" label="Name" />
+          <CustomizedInput type="email" name="email" label="Email" />
+          <CustomizedInput type="password" name="password" label="Password" />
+          <Button
+            type="submit"
+            sx={{
+              px: 2,
+              py: 1,
+              mt: 2,
+              width: "100%",
+              borderRadius: 2,
+              bgcolor: "#00fffc",
+              color: "#08131F",
 
-                ":hover": {
-                  bgcolor: "white",
-                  color: "black",
-                },
-              }}
-              endIcon={<IoIosLogIn />}
-            >
-              Signup
-            </Button>
-          </Box>
-        </form>
+              ":hover": {
+                bgcolor: "white",
+                color: "black",
+              },
+            }}
+            endIcon={<IoIosLogIn />}
+          >
+            Signup
+          </Button>
+        </Box>
       </Box>
+
     </Box>
   );
 };
