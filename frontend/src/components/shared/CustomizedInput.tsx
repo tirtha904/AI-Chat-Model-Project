@@ -9,11 +9,12 @@ const CustomizedInput = (props: Props) => {
   return (
     <TextField //to create a textbox for like email and password
       margin="normal"
+      fullWidth
       sx={{ 
         '& .MuiInputLabel-root': { color: 'white' },
         '& .MuiOutlinedInput-root': {
          
-          width: "400px",
+          width: "100%",
           borderRadius: 2,
           fontSize: 20,
           color: "white",
