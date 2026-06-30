@@ -8,11 +8,15 @@ import { useNavigate } from "react-router-dom";
 import { socket } from '../socket'
 import toast from "react-hot-toast";
 import { deleteUserChats, getUserChats, sendChatRequest } from "../helpers/api-communicator";
+import { useMediaQuery, useTheme } from "@mui/material";
+
 type Message = {
   role: "user" | "assistant";
   content: string;
 };
 const Chat = () => {
+  const theme = useTheme();
+  const isXs = useMediaQuery(theme.breakpoints.down("sm"));
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const auth = useAuth();
@@ -248,7 +252,7 @@ const Chat = () => {
         <div
           style={{
             width: "100%",
-            borderRadius: 9,
+            borderRadius: 15,
             backgroundColor: "#1E2A44",
             display: "flex",
             margin: "auto",
@@ -268,13 +272,14 @@ const Chat = () => {
               }
             }}
             style={{
-              width: "100%",
+             width: "100%",
+              margin:'auto',
               backgroundColor: "transparent",
-              padding: "30px",
+              padding: isXs ? "16px" : "30px",
+              fontSize: isXs ? "18px" : "20px",
               border: "none",
               outline: "none",
               color: "white",
-              fontSize: "20px",
             }}
           />
           <IconButton onClick={handleSubmit} sx={{ color: "white", mx: 1 }}>
