@@ -39,9 +39,9 @@ export const AuthProvider=({children}:{children:ReactNode})=>{
       setUser({ email: data.email, name: data.name });
       setIsLoggedIn(true);
     }
-   }catch(error){
+   }catch(error:any){
     console.log('login failed',error)
-    throw new Error('invaild credentials')
+    throw new Error(error.message)
    }
   };
     const signup = async (name: string, email: string, password: string) => {
