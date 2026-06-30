@@ -21,8 +21,7 @@ export const userSignup= async (req:Request,res:Response,next:NextFunction)=>{
     const{name,email,password}=req.body;
 
    const existingUser= await User.findOne({ email })
-   if(existingUser) return res.status(401).send("User already registered")
-
+     if(existingUser) return res.status(401).json({message:"User already registered"})
     const hashedPassword=await hash(password,10) //10 round of encryption
     const user= new User({name,email,password:hashedPassword})
     await user.save();
@@ -66,12 +65,12 @@ export const userLogin= async (req:Request,res:Response,next:NextFunction)=>{
     const{email,password}=req.body;
     const user= await User.findOne({email})  //checks if email as same as signup
     if(!user){
-      return res.status(401).send("User not registered")
+    return res.status(401).json({message:"User not registered"})
     }
 
     const isPasswordCorrect= await compare(password,user.password)
     if(!isPasswordCorrect){
-      return res.status(403).send("Incorrect Password");
+   return res.status(403).json({message:"Incorrect Password"})
     }
 
 
