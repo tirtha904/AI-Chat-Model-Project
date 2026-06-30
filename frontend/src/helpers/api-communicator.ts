@@ -4,12 +4,16 @@ export const api = axios.create({
   withCredentials: true, // helps to exchange the cookies
 });
 export const loginUser = async (email: string, password: string) => {
-  const res = await api.post("/user/login", { email, password });
+   try{
+    const res = await api.post("/user/login", { email, password });
   if (res.status !== 200) {
     throw new Error("Unable to login");
   }
   const data = await res.data;
   return data;
+  }catch (error: any) {
+    throw new Error(error?.response?.data?.message || "login failed")
+  }
 };
 
 export const signupUser = async (
@@ -24,8 +28,9 @@ export const signupUser = async (
     }
     const data = await res.data;
     return data;
-  } catch (error) {
-    throw error;
+  } catch (error:any) {
+    throw new Error(error?.response?.data?.message || "signup failed")
+
   }
 };
 export const checkAuthStatus = async () => {
@@ -38,7 +43,7 @@ export const checkAuthStatus = async () => {
     const data = await res.data;
     return data;
   } catch (error) {
-    console.log("server not recieving from api-commini", error);
+    // console.log("server not recieving from api-commini", error);
     throw error;
   }
 };
